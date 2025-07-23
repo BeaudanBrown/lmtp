@@ -1,19 +1,54 @@
-# lmtp 1.4.2
-
-### General
-
--   Removed dependency on `schoolmath` which used a very slow function for testing if a vector was "decimalish".
-
-# lmtp 1.4.1
+# lmtp 1.5.3
 
 ### New Features
 
--   Added `lmtp_survival()` function for estimating the entire survival curve. Enforces monotonicity using isotonic regression (see issue \#140).
--   Bootstrap for TMLE with the `boot` argument using a modified TMLE algorithm (https://arxiv.org/abs/1810.03030).
+### Bug Fixes
+
+- Fixes bug where the `shifted` argument wouldn't work with multivariate exposure (see issue \#175).
+- Fixes bug where `mtp = FALSE` wouldn't work with multivariate exposure. 
+
+### General
+
+# lmtp 1.5.2
+
+### New Features
 
 ### Bug Fixes
 
 ### General
+
+- The default for the `mtp` argument has been changed from `FALSE` to `TRUE` (see issue \#170).
+- A warning message is now printed in `lmtp_contrast()` that p-values aren't adjusted for multiple comparisons (see issue \#172).
+- A warning message is now printed in `lmtp_contrast()` if `ref` is a constant.
+
+# lmtp 1.5.1
+
+### New Features
+
+### Bug Fixes
+
+- Super learner prediction failing for some learners. Now using `onlySL = TRUE` in `predict.SuperLearner` (see issue \#162).
+
+### General
+
+- Making sure to only pass the necessary variables to `predict.SuperLearner` to suppress some warnings. 
+
+# lmtp 1.5.0
+
+### New Features
+
+-   Added the ability to estimate the so-called "total effect" for survival outcome with competing risks (see issue \#143).
+-   IPW and g-computation estimators are no-longer supported; they have been given deprecation errors. 
+-   Added `lmtp_survival()` function for estimating the entire survival curve. Enforces monotonicity using isotonic regression (see issue \#140).
+
+### Bug Fixes
+
+-   Using fitted values from isotonic regression in `lmtp_survival()` instead of the original values (see issue \#149).
+
+### General
+
+-   Removed dependency on `schoolmath` which used a very slow function for testing if a vector was "decimalish".
+-   Fixed "F used instead of FALSE" error in CRANs tests.
 
 # lmtp 1.4.0
 

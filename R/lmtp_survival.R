@@ -99,12 +99,12 @@ lmtp_survival <- function(data, trt, outcomes, baseline = NULL, time_vary = NULL
 
   t <- 1
   cli::cli_progress_step("Working on time {t}/{tau}...")
-  for (t in 1:tau) {
-    if (length(trt) > 1) args$trt <- trt[1:t]
-    if (length(args$time_vary) > 1) args$time_vary <- time_vary[1:t]
-    args$outcome <- outcomes[1:t]
-    args$cens <- cens[1:t]
-    args$compete <- compete[1:t]
+  for (t in seq_len(tau)) {
+    if (length(trt) > 1) args$trt <- trt[seq_len(t)]
+    if (length(time_vary) > 1) args$time_vary <- time_vary[seq_len(t)]
+    args$outcome <- outcomes[seq_len(t)]
+    args$cens <- cens[seq_len(t)]
+    args$compete <- compete[seq_len(t)]
     args$outcome_type <- ifelse(t == 1, "binomial", "survival")
 
     if (estimator == "lmtp_tmle") {
